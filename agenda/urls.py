@@ -16,7 +16,38 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from citas import views
+
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path("admin/", admin.site.urls),
+
+    path("servicios/iva/", views.servicios_iva),
+
+    path("cita/<int:numero>/pagado/", views.cita_pagado),
+
+    path("servicios/", views.lista_servicios),
+
+    path("servicios/resumen/", views.resumen_servicios),
+
+    path("citas/", views.lista_citas),
+
+    path("citas/ingresos/", views.ingresos_facturados),
+
+    path("citas/pendientes/", views.citas_pendientes),
+
+    path("servicios/economicos/", views.servicios_economicos),
+
+    path("cita/<int:numero>/estado/", views.estado_cita),
+
+    path("cita/<int:numero>/", views.detalle_cita),
+
+    path("citas/duracion/", views.duracion_citas),
+
+    path("clientes/citas/", views.citas_por_cliente),
+
+    path("informe/", views.informe_general),
+
+    path("servicios/populares/", views.servicios_populares),
 ]
+

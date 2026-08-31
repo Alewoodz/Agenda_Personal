@@ -1,14 +1,25 @@
 from django.contrib import admin
-from .models import Cliente, Servicio
+from .models import Cliente, Servicio, Cita, Pago
+
+
+@admin.register(Cliente)
+class ClienteAdmin(admin.ModelAdmin):
+    list_display = ("nombre", "telefono")
+    search_fields = ("nombre",)
+
 
 @admin.register(Servicio)
 class ServicioAdmin(admin.ModelAdmin):
     list_display = ("nombre", "precio", "duracion_min")
-    search_fields = ("nombre",)
-    ordering = ("duracion_min",)
+    ordering = ("precio",)
 
-@admin.register(Cliente)
-class ClienteAdmin(admin.ModelAdmin):
-    list_display = ("nombre", "telefono", )
-    search_fields = ("nombre",)
-    ordering = ("nombre",)
+
+@admin.register(Cita)
+class CitaAdmin(admin.ModelAdmin):
+    list_display = ("cliente", "servicio", "fecha_hora", "estado")
+    ordering = ("estado",)
+
+
+@admin.register(Pago)
+class PagoAdmin(admin.ModelAdmin):
+    list_display = ("cita", "monto", "metodo_pago")
